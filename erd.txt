@@ -1,0 +1,75 @@
+Customer
+
+CustomerID (PK)
+
+Name, Age, Gender, MaritalStatus, Region
+
+(One customer can have many accounts, loans, cards)
+
+Account
+
+AccountNumber (PK)
+
+CustomerID (FK → Customer)
+
+AccountType (Savings, Current, etc.)
+
+Balance
+
+BranchCode (FK → Branch)
+
+Branch
+
+BranchCode (PK)
+
+BranchName
+
+Region
+
+Loan
+
+LoanID (PK)
+
+CustomerID (FK → Customer)
+
+LoanAmount, LoanStatus (Active, Closed, Default)
+
+Card
+
+CardNumber (PK)
+
+CustomerID (FK → Customer)
+
+CardType (Debit, Credit, Platinum, Gold, etc.)
+
+Transaction (this is missing in dataset, but we’ll generate it!)
+
+TransactionID (PK)
+
+AccountNumber (FK → Account)
+
+DateTime
+
+Amount
+
+Type (Deposit, Withdrawal, Transfer, Payment)
+
+Status (Success, Failed, Pending)
+
+🔹 How They Connect
+
+Customer → Account: One-to-Many (a customer may have multiple accounts).
+
+Customer → Loan: One-to-Many.
+
+Customer → Card: One-to-Many.
+
+Account → Transaction: One-to-Many.
+
+Branch → Account: One-to-Many.
+
+So, the core flow is:
+Customer → Account → Transaction
+Customer → Loan
+Customer → Card
+Branch → Account
